@@ -1,0 +1,58 @@
+<h1 id="tableLabel">Create New File </h1>
+
+<p>Please select the file to upload : </p>
+
+
+
+<ngx-dropzone (change)="onSelect($event)">
+
+  <ngx-dropzone-label>Drop it here !</ngx-dropzone-label>
+
+  <ngx-dropzone-preview *ngFor="let f of files" [removable]="false" >
+
+
+
+    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+
+  </ngx-dropzone-preview>
+
+</ngx-dropzone>
+<br />
+
+<button (click)="save()" class="btn btn-primary" > Save Files </button>
+
+
+<!--<input type="file" [(ngModel)]="file" />-->
+<!--<div class="form-group">
+  <label for="picture">Select File</label>
+  <div class="custom-file">
+    <input #file type="file" id="customFile" accept=".jpg,.png,.gif" multiple (change)="upload(file.files)" />
+    <label class="custom-file-label" for="customFile">Choose file</label>
+  </div>
+</div>
+<div class="progress">
+  <div class="progress-bar" role="progressbar" [style.width.%]="progress"></div>
+</div>-->
+<!--<div draggable="true" ngClass="{{dragAreaClass}}">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      Drag files here
+      <a href="javascript:void(0)" (click)="file.click()">
+        or click to open
+      </a>
+      <input type="file"
+             #file
+             [multiple]="false"
+             (change)="onFileChange($event)"
+             style="display:none" />
+      <div class="dragged-files-wrapper" *ngIf="draggedFiles">
+        <div class="file" *ngFor="let file of draggedFiles">
+          {{file}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="error" *ngIf="error">
+  Only one file at time allow
+</div>-->
