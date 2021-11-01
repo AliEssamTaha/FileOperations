@@ -7,7 +7,9 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
-  public data: any;
+  data: any;
+  title = 'dropzone';
+  files: File[] = [];
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private router: Router) {
     this.getData();
@@ -26,6 +28,26 @@ export class HomeComponent {
         alert('Deleted Successfully.');
       });
     }
+  }
+
+  onSelect(event) {
+    console.log(event);
+    this.files.push(...event.addedFiles);
+  }
+
+  save() {
+    const formData = new FormData();
+
+    for (var i = 0; i < this.files.length; i++) {
+      formData.append("file[]", this.files[i]);
+    }
+
+    this.http.post(this.baseUrl + 'file', formData).subscribe(res => {
+      this.getData();
+      this.files = [];
+      console.log(res);
+      alert('Uploaded Successfully.');
+    });
   }
 }
 
